@@ -9,7 +9,7 @@
         WindowStyle="ToolWindow"
         Background="#FF0D1117"
         WindowStartupLocation="CenterScreen"
-        Title="Sign In" Height="250" Width="400" ResizeMode="NoResize">
+        Title="Sign In" Height="350" Width="400" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="Header" TargetType="HeaderedContentControl">
             <Setter Property="FontSize" Value="15" />
@@ -64,7 +64,7 @@
             BorderThickness="3,3,3,3" 
             CornerRadius="7,7,7,7"
             Width="200"
-            Height="150">
+            Height="200">
 
             <Grid 
                 Background="#FF161B22">
@@ -119,7 +119,7 @@
                 </Grid>
                 
                 <!-- Data Source Row -->
-                <Grid Grid.Row="0" Margin="3">
+                <Grid Grid.Row="2" Margin="3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
@@ -131,7 +131,7 @@
                            Margin="5 3 5 3">
                     Data Source:
                     </TextBlock>
-                    <TextBox x:Name="loginField"
+                    <TextBox x:Name="dataSourceField"
                         Style="{StaticResource TextField}"
                         Text="{Binding DataSource}"
                         Grid.Row="1"
@@ -140,7 +140,7 @@
                 </Grid>
                 
                 <!-- Button Sign In -->
-                <Grid Grid.Row="2" Margin="3">
+                <Grid Grid.Row="3" Margin="3">
                     <Button Style="{StaticResource Button}"
                             Width="Auto"
                             Margin="5"
