@@ -31,6 +31,9 @@ namespace DataBase.Helper
             // 2. Check object 
             if (connection == null)
                 connection = new OracleConnection();
+            if (connection.State == System.Data.ConnectionState.Open)
+                connection.Close();
+
 
             // 3. Open connection
             connection.ConnectionString = connectBuilder.ConnectionString;
