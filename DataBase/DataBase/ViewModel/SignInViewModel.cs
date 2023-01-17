@@ -62,8 +62,9 @@ namespace DataBase.ViewModel
             // 0. Check login and password
             if (Login == "" || Password == "" || DataSource == "")
                 throw new Exception("Incorrect Login/Password or DataSource is empty");
-            // 1. Create connection 
-            if (!DatabaseHelper.CreateConnect(Login, Password, DataSource))
+            // 1. Create connection
+            State = DatabaseHelper.CreateConnect(Login, Password, DataSource);
+            if (!State)
                 throw new Exception("Can't connect to database. Maybe incorrect Login/Password");
         }
         #endregion
