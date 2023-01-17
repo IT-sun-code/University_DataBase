@@ -10,20 +10,19 @@ namespace DataBase.Helper
     public static class DatabaseHelper
     {
         private static OracleConnection connection = new OracleConnection();
-        private static string oracleDatabase = "oracle";
 
         public static OracleConnection Connection
         {
             get => connection;
         }
 
-        public static bool CreateConnect(string user, string pwd)
+        public static bool CreateConnect(string user, string pwd, string dataSource)
         {
             // 1. Create connection string
             OracleConnectionStringBuilder connectBuilder = new OracleConnectionStringBuilder();
             connectBuilder.UserID = user;
             connectBuilder.Password = pwd;
-            connectBuilder.DataSource = oracleDatabase;
+            connectBuilder.DataSource = dataSource;
 
             connectBuilder.MaxPoolSize = 150;
             connectBuilder.ConnectionTimeout = 60;

@@ -9,6 +9,7 @@ namespace DataBase.Model
     {
         public string Login { get; set; }
         public string Password { get; set; }
+        public string DataSource { get; set; }
         public bool ConnectionState { get; set; }
 
         public UserModel()

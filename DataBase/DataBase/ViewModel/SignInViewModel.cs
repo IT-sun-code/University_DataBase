@@ -34,6 +34,12 @@ namespace DataBase.ViewModel
             set => userModel.Password = value;
         }
 
+        public string DataSource
+        {
+            get => userModel.DataSource;
+            set => userModel.DataSource = value;
+        }
+
         public bool State
         {
             get => userModel.ConnectionState;
@@ -54,10 +60,10 @@ namespace DataBase.ViewModel
         public void OnSignIn()
         {
             // 0. Check login and password
-            if (Login == "" || Password == "")
-                throw new Exception("Incorrect Login/Password");
+            if (Login == "" || Password == "" || DataSource == "")
+                throw new Exception("Incorrect Login/Password or DataSource is empty");
             // 1. Create connection 
-            if (!DatabaseHelper.CreateConnect(Login, Password))
+            if (!DatabaseHelper.CreateConnect(Login, Password, DataSource))
                 throw new Exception("Can't connect to database. Maybe incorrect Login/Password");
         }
         #endregion

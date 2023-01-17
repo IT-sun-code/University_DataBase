@@ -72,6 +72,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <!-- Login Row -->
@@ -116,8 +117,29 @@
                         MaxLength="25"
                         PasswordChanged="PasswordBox_PasswordChanged"/>
                 </Grid>
+                
+                <!-- Data Source Row -->
+                <Grid Grid.Row="0" Margin="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
 
+                    <TextBlock Style="{StaticResource Text}"
+                           Grid.Row="0"
+                           Margin="5 3 5 3">
+                    Data Source:
+                    </TextBlock>
+                    <TextBox x:Name="loginField"
+                        Style="{StaticResource TextField}"
+                        Text="{Binding DataSource}"
+                        Grid.Row="1"
+                        Margin="5 3 5 3"
+                        Width="Auto"/>
+                </Grid>
+                
+                <!-- Button Sign In -->
                 <Grid Grid.Row="2" Margin="3">
                     <Button Style="{StaticResource Button}"
                             Width="Auto"
