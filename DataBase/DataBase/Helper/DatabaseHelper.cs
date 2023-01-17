@@ -19,7 +19,7 @@ namespace DataBase.Helper
         public static bool CreateConnect(string user, string pwd)
         {
             // 1. Create connection string
-            string conStringUser = "User Id=" + user + ";Password=" + pwd + ";Data Source=" + oracleDatabase + ";";
+            string conStringUser = "User Id=" + user + ";Password=" + pwd + ";Data Source=" + oracleDatabase + ";Connection Timeout=600;Max Pool Size=150";
 
             // 2. Check object 
             if (connection == null)

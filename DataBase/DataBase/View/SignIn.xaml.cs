@@ -30,7 +30,6 @@ namespace DataBase
                 vm.OnSignIn();
                 if (vm.State)
                 {
-                    // 2. Open Main Window
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
                     this.Close();
