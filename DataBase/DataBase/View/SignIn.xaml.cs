@@ -26,6 +26,7 @@ namespace DataBase
         {
             if(DataContext != null)
             {
+#if !DEBUG
                 var vm = (DataContext as SignInViewModel);
                 vm.OnSignIn();
                 if (vm.State)
@@ -34,6 +35,11 @@ namespace DataBase
                     mainWindow.Show();
                     this.Close();
                 }
+#else 
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+#endif
             }
         }
     }

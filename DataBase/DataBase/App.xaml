@@ -5,6 +5,8 @@
              StartupUri="View/SignIn.xaml"
              DispatcherUnhandledException="App_DispatcherUnhandledException">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <BitmapImage x:Key="MainIcon" UriSource="Resources\icon.png"></BitmapImage>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

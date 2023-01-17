@@ -1,9 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
-using System;
-using System.Collections.Generic;
 using System.Text;
 using Serilog;
-using System.Windows.Documents;
+using System;
 
 namespace DataBase.Helper
 {
@@ -34,7 +32,6 @@ namespace DataBase.Helper
             if (connection.State == System.Data.ConnectionState.Open)
                 connection.Close();
 
-
             // 3. Open connection
             connection.ConnectionString = connectBuilder.ConnectionString;
             connection.Open();
@@ -47,8 +44,29 @@ namespace DataBase.Helper
             return false;
         }
 
-        public static OracleCommand CreateCommand() =>
-            Connection.CreateCommand();
+        public static string ExecuteCommand(string sql)
+        {
+            var command = Connection.CreateCommand();
+            command.CommandText = sql;
+            string result = "";
+
+            using (var reader = command.ExecuteReader())
+            {
+                StringBuilder sb = new StringBuilder();
+
+                while (reader.Read())
+                {
+                    if (sb.Length > 0)
+                        sb.Append(", ");
+
+                    sb.Append(Convert.ToString(reader.GetValue(0)));
+                }
+
+                result = sb.ToString();
+            }
+
+            return result;
+        }
 
         public static void CloseConnect()
         {

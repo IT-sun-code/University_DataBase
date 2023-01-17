@@ -1,12 +1,8 @@
-﻿using Prism.Commands;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using System.Windows.Controls;
-using DataBase.Model;
+﻿using System.ComponentModel;
 using DataBase.Helper;
-using DataBase.View;
+using Prism.Commands;
+using DataBase.Model;
+using System;
 
 namespace DataBase.ViewModel
 {
