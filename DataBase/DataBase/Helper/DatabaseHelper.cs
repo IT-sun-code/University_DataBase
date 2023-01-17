@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Serilog;
+using System.Windows.Documents;
 
 namespace DataBase.Helper
 {
     public static class DatabaseHelper
     {
         private static OracleConnection connection = new OracleConnection();
-        private static string oracleDatabase = "localhost:1521/XEPDB1";
+        private static string oracleDatabase = "XE";
 
         public static OracleConnection Connection
         {
@@ -19,14 +20,21 @@ namespace DataBase.Helper
         public static bool CreateConnect(string user, string pwd)
         {
             // 1. Create connection string
-            string conStringUser = "User Id=" + user + ";Password=" + pwd + ";Data Source=" + oracleDatabase + ";Connection Timeout=600;Max Pool Size=150";
+            OracleConnectionStringBuilder connectBuilder = new OracleConnectionStringBuilder();
+            connectBuilder.UserID = user;
+            connectBuilder.Password = pwd;
+            connectBuilder.DataSource = oracleDatabase;
+
+            connectBuilder.MaxPoolSize = 150;
+            connectBuilder.ConnectionTimeout = 60;
+
 
             // 2. Check object 
             if (connection == null)
                 connection = new OracleConnection();
 
             // 3. Open connection
-            connection.ConnectionString = conStringUser;
+            connection.ConnectionString = connectBuilder.ConnectionString;
             connection.Open();
 
             // 4. Check connection statement
