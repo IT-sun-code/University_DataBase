@@ -102,7 +102,6 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-
                     <TextBlock Style="{StaticResource Text}"
                            Grid.Row="0"
                            Margin="5 3 5 3">
@@ -123,7 +122,7 @@
                     <Button Style="{StaticResource Button}"
                             Width="Auto"
                             Margin="5"
-                            Command="{Binding OnSignInCommand}">
+                            Click="SignIn_Click">
                         Sign In
                     </Button>
                 </Grid>

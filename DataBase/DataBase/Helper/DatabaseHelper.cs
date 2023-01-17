@@ -9,7 +9,7 @@ namespace DataBase.Helper
     public static class DatabaseHelper
     {
         private static OracleConnection connection = new OracleConnection();
-        private static string oracleDatabase = "<localhost/XEPDB1>";
+        private static string oracleDatabase = "localhost:1521/XEPDB1";
 
         public static OracleConnection Connection
         {

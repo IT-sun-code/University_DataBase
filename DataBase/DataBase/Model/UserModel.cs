@@ -9,11 +9,20 @@ namespace DataBase.Model
     {
         public string Login { get; set; }
         public string Password { get; set; }
+        public bool ConnectionState { get; set; }
 
         public UserModel()
         {
             Login = "";
             Password = "";
+            ConnectionState = false;
+        }
+
+        public void Clear()
+        {
+            Login = "";
+            Password = "";
+            ConnectionState = false;
         }
     }
 }
