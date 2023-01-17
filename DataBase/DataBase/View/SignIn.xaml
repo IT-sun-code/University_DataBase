@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:DataBase.ViewModel"
         xmlns:local="clr-namespace:DataBase"
         mc:Ignorable="d"
         WindowStyle="ToolWindow"
         Background="#FF0D1117"
+        WindowStartupLocation="CenterScreen"
         Title="Sign In" Height="250" Width="400" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="Header" TargetType="HeaderedContentControl">
@@ -22,10 +24,12 @@
 
         <Style x:Key="TextField" TargetType="TextBox">
             <Setter Property="Background" Value="#FF0D1117"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
 
         <Style x:Key="PasswordField" TargetType="PasswordBox">
             <Setter Property="Background" Value="#FF0D1117"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
 
         <Style x:Key="Button" TargetType="Button">
@@ -84,10 +88,11 @@
                     Username:
                     </TextBlock>
                     <TextBox x:Name="loginField"
-                    Style="{StaticResource TextField}"
-                    Grid.Row="1"
-                    Margin="5 3 5 3"
-                    Width="Auto"/>
+                        Style="{StaticResource TextField}"
+                        Text="{Binding Login}"
+                        Grid.Row="1"
+                        Margin="5 3 5 3"
+                        Width="Auto"/>
                 </Grid>
 
                 <!-- Password Row -->
@@ -104,12 +109,13 @@
                         Password:
                     </TextBlock>
                     <PasswordBox  
-                    x:Name="passwordField"
-                    Style="{StaticResource PasswordField}"
-                    Grid.Row="1"
-                    Width="Auto" 
-                    Margin="5 3 5 3"
-                    MaxLength="25"/>
+                        x:Name="passwordField"
+                        Style="{StaticResource PasswordField}"
+                        Grid.Row="1"
+                        Width="Auto" 
+                        Margin="5 3 5 3"
+                        MaxLength="25"
+                        PasswordChanged="PasswordBox_PasswordChanged"/>
                 </Grid>
 
 
@@ -117,7 +123,7 @@
                     <Button Style="{StaticResource Button}"
                             Width="Auto"
                             Margin="5"
-                            >
+                            Command="{Binding OnSignInCommand}">
                         Sign In
                     </Button>
                 </Grid>
