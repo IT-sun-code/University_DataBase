@@ -17,6 +17,11 @@ namespace DataBase.ViewModel
         #endregion
 
         #region - Public Data -
+        public UserModel UserModel
+        {
+            get => userModel;
+        }
+
         public string Login
         {
             get => userModel.Login;
@@ -27,6 +32,12 @@ namespace DataBase.ViewModel
         {
             get => userModel.Password;
             set => userModel.Password = value;
+        }
+
+        public bool State
+        {
+            get => userModel.ConnectionState;
+            set => userModel.ConnectionState = value;
         }
         #endregion
 
@@ -40,7 +51,7 @@ namespace DataBase.ViewModel
         }
 
         #region - Implementation Delegate Commands -
-        void OnSignIn()
+        public void OnSignIn()
         {
             // 0. Check login and password
             if (Login == "" || Password == "")
@@ -48,9 +59,6 @@ namespace DataBase.ViewModel
             // 1. Create connection 
             if (!DatabaseHelper.CreateConnect(Login, Password))
                 throw new Exception("Can't connect to database. Maybe incorrect Login/Password");
-            // 2. Open Main Window
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
         }
         #endregion
 

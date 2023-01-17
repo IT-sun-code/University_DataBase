@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using DataBase.View;
 using DataBase.ViewModel;
 
 namespace DataBase
@@ -19,6 +20,21 @@ namespace DataBase
         {
             if (DataContext != null) 
                 (DataContext as SignInViewModel).Password = ((PasswordBox)sender).Password;
+        }
+
+        private void SignIn_Click(object sender, RoutedEventArgs e)
+        {
+            if(DataContext != null)
+            {
+                var vm = (DataContext as SignInViewModel);
+                vm.OnSignIn();
+                if (vm.State)
+                {
+                    // 2. Open Main Window
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                }
+            }
         }
     }
 }
