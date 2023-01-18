@@ -93,51 +93,79 @@
                   Height="Auto"
                   Margin="10"
                   VerticalAlignment="Stretch">
-                <TabControl Style="{StaticResource Tabs}">
-                    <TabItem Header="Teachers" Style="{StaticResource TabItem}"
-                             Selector.Selected="OnSelectTeachers"></TabItem>
-                    <TabItem Header="Groups" Style="{StaticResource TabItem}"
-                             Selector.Selected="OnSelectGroups"></TabItem>
-                    <TabItem Header="Subjects" Style="{StaticResource TabItem}"
-                             Selector.Selected="OnSelectSubjects"></TabItem>
-                    <TabItem Header="Teacher Subjects" Style="{StaticResource TabItem}"></TabItem>
-                    <TabItem Header="Students" Style="{StaticResource TabItem}"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Tab Control -->
+                <Grid Grid.Row="0">
+
+                    <TabControl Style="{StaticResource Tabs}">
+                        <TabItem Header="Teachers" Style="{StaticResource TabItem}"
+                             Selector.Selected="OnSelectTeachers">
+
+                        </TabItem>
+                        <TabItem Header="Groups" Style="{StaticResource TabItem}"
+                             Selector.Selected="OnSelectGroups">
+
+                        </TabItem>
+                        <TabItem Header="Subjects" Style="{StaticResource TabItem}"
+                             Selector.Selected="OnSelectSubjects">
+
+                        </TabItem>
+                        <TabItem Header="Teacher Subjects" Style="{StaticResource TabItem}"
+                             Selector.Selected="OnSelectTeacherSubjects">
+
+                        </TabItem>
+                        <TabItem Header="Students" Style="{StaticResource TabItem}"
                              Selector.Selected="OnSelectStudents">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <!-- Select all Students -->
-                            <Button 
-                                Grid.Row="2"
-                                Click="OnSelectStudents"
-                                Style="{StaticResource Button}">
-                                Select All
-                            </Button>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
-                            <!-- Delete Student -->
-                            <Button 
-                                Grid.Row="3"
-                                Click="OnSelectStudents"
-                                Style="{StaticResource Button}">
-                                Delete Student
-                            </Button>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Marks" Style="{StaticResource TabItem}"
+                             Selector.Selected="OnSelectMarks">
 
-                            <!-- Update Student -->
-                            <Button
-                                Grid.Row="4" 
-                                Click="OnSelectStudents"
-                                Style="{StaticResource Button}">
-                                Update Student
-                            </Button>
-                        </Grid>
-                    </TabItem>
-                    <TabItem Header="Marks" Style="{StaticResource TabItem}"></TabItem>
-                </TabControl>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+
+                <!-- Buttons -->
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!-- Select all Students -->
+                    <Button 
+                            Grid.Row="0"
+                            Click="OnSelect"
+                            Style="{StaticResource Button}">
+                        Select All
+                    </Button>
+
+                    <!-- Delete Student -->
+                    <Button 
+                            Grid.Row="1"
+                            Click="OnSelect"
+                            Style="{StaticResource Button}">
+                        Delete Student
+                    </Button>
+
+                    <!-- Update Student -->
+                    <Button
+                            Grid.Row="2" 
+                            Click="OnSelect"
+                            Style="{StaticResource Button}">
+                        Update Student
+                    </Button>
+                </Grid>
             </Grid>
 
             <Grid Grid.Column="1" Margin="10" >
