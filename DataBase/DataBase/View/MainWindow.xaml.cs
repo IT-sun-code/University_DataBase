@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataBase.Helper;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -20,6 +21,12 @@ namespace DataBase.View
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void OnGetStudents(object sender, RoutedEventArgs args)
+        {
+            var data = DatabaseHelper.ExecuteCommand("SELECT * FROM brigada0_students", "Students");
+            DatabaseTable.ItemsSource = data.Tables["Students"].DefaultView;
         }
     }
 }

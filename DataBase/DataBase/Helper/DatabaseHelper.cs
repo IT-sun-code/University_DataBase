@@ -2,6 +2,7 @@
 using System.Text;
 using Serilog;
 using System;
+using System.Data;
 
 namespace DataBase.Helper
 {
@@ -44,28 +45,19 @@ namespace DataBase.Helper
             return false;
         }
 
-        public static string ExecuteCommand(string sql)
+        public static DataSet ExecuteCommand(string sql, string tableName)
         {
             var command = Connection.CreateCommand();
             command.CommandText = sql;
-            string result = "";
 
-            using (var reader = command.ExecuteReader())
-            {
-                StringBuilder sb = new StringBuilder();
+            command.ExecuteNonQuery();
+            OracleDataAdapter adapter = new OracleDataAdapter(command);
+            DataSet dataSet = new DataSet();
 
-                while (reader.Read())
-                {
-                    if (sb.Length > 0)
-                        sb.Append(", ");
+            adapter.Fill(dataSet, tableName);
+            adapter.Update(dataSet, tableName);
 
-                    sb.Append(Convert.ToString(reader.GetValue(0)));
-                }
-
-                result = sb.ToString();
-            }
-
-            return result;
+            return dataSet;
         }
 
         public static void CloseConnect()
