@@ -24,7 +24,7 @@ namespace DataBase.Helper
             connectBuilder.DataSource = dataSource;
 
             connectBuilder.MaxPoolSize = 150;
-            connectBuilder.ConnectionTimeout = 60;
+            connectBuilder.ConnectionTimeout = 20;
             connectBuilder.PersistSecurityInfo = true;
 
             // 2. Check object 
