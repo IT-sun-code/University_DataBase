@@ -126,7 +126,6 @@
 
                 <!-- Tab Control -->
                 <Grid Grid.Row="0">
-
                     <TabControl Style="{StaticResource Tabs}">
                         <TabItem Header="Teachers" Style="{StaticResource TabItem}"
                              Selector.Selected="OnSelectTeachers">
@@ -189,29 +188,299 @@
                         </TabItem>
                         <TabItem Header="Groups" Style="{StaticResource TabItem}"
                              Selector.Selected="OnSelectGroups">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
+                                <!-- Id Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="0"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    ID:
+                                </TextBlock>
+                                <TextBox x:Name="idGroupField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding GroupID}"
+                                         Grid.Row="0"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+
+                                <!-- First Name Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="1"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    Group Name:
+                                </TextBlock>
+                                <TextBox x:Name="groupNameField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding GroupName}"
+                                         Grid.Row="1"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="Subjects" Style="{StaticResource TabItem}"
                              Selector.Selected="OnSelectSubjects">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
+                                <!-- Id Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="0"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    ID:
+                                </TextBlock>
+                                <TextBox x:Name="idSubjectField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding SubjectID}"
+                                         Grid.Row="0"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+
+                                <!-- Title Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="1"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    Title:
+                                </TextBlock>
+                                <TextBox x:Name="subjectTitleField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding SubjectTitle}"
+                                         Grid.Row="1"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="Teacher Subjects" Style="{StaticResource TabItem}"
                              Selector.Selected="OnSelectTeacherSubjects">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
+                                <!-- Id Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="0"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    Teacher ID:
+                                </TextBlock>
+                                <TextBox x:Name="TeachIdField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding SubTeacherID}"
+                                         Grid.Row="0"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+
+                                <!-- Title Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="1"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    Subject ID:
+                                </TextBlock>
+                                <TextBox x:Name="SubIdField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding TeachSubjectID}"
+                                         Grid.Row="1"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="Students" Style="{StaticResource TabItem}"
                              Selector.Selected="OnSelectStudents">
                             <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
+                                <!-- Id Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="0"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    ID:
+                                </TextBlock>
+                                <TextBox x:Name="idStudentField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding StudentID}"
+                                         Grid.Row="0"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+
+                                <!-- First Name Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="1"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    First Name:
+                                </TextBlock>
+                                <TextBox x:Name="firstNameStudentField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding StudentFirstName}"
+                                         Grid.Row="1"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+
+                                <!-- Last Name Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="2"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    Last Name:
+                                </TextBlock>
+                                <TextBox x:Name="lastNameStudentField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding StudentLastName}"
+                                         Grid.Row="2"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+                                
+                                <!-- Group Id Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="3"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    Group ID:
+                                </TextBlock>
+                                <TextBox x:Name="idGroupStudentField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding StudentGroupID}"
+                                         Grid.Row="3"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Marks" Style="{StaticResource TabItem}"
                              Selector.Selected="OnSelectMarks">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
+                                <!-- Id Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="0"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    ID:
+                                </TextBlock>
+                                <TextBox x:Name="idStudentMarkField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding MarkID}"
+                                         Grid.Row="0"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+
+                                <!-- Student ID Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="1"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    Student ID:
+                                </TextBlock>
+                                <TextBox x:Name="studentIdMarkField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding MarkStudentID}"
+                                         Grid.Row="1"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+
+                                <!-- Subject ID Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="2"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    Subject ID:
+                                </TextBlock>
+                                <TextBox x:Name="markSubjectIdField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding MarkSubjectID}"
+                                         Grid.Row="2"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+
+                                <!-- Group Id Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="3"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    Date:
+                                </TextBlock>
+                                <TextBox x:Name="markDateField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding MarkDate}"
+                                         Grid.Row="3"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+
+
+                                <!-- Mark Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="4"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    Mark:
+                                </TextBlock>
+                                <TextBox x:Name="markValueField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding MarkValue}"
+                                         Grid.Row="4"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </Grid>
@@ -251,7 +520,7 @@
                     <!-- Insert -->
                     <Button
                             Grid.Row="3" 
-                            Click="OnUpdate"
+                            Click="OnInsert"
                             Style="{StaticResource Button}">
                         Insert
                     </Button>
@@ -265,6 +534,7 @@
                           Height="Auto"
                           Background="#FF232B3D"
                           Foreground="White"
+                          IsEnabled="False"
                           CellStyle="{StaticResource MyDataGridCell}"
                           ColumnHeaderStyle="{StaticResource MyHeaderDataGrid}"
                           RowStyle="{StaticResource MyRowDataGrid}"
