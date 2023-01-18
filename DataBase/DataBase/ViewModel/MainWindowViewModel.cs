@@ -62,6 +62,10 @@ namespace DataBase.ViewModel
         }
         #endregion
 
+        #region - Delete - Database Commands -
+
+        #endregion
+
         #region - On Property Changed -
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

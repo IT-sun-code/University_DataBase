@@ -20,7 +20,12 @@ namespace DataBase.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region - Delegate Commands -
         private DelegateCommand OnSelectCommand { get; set; } = null;
+        private DelegateCommand OnDeleteCommand { get; set; } = null;
+        private DelegateCommand OnUpdateCommand { get; set; } = null;
+        private DelegateCommand OnInsertCommand { get; set; } = null;
+        #endregion
 
         public MainWindow()
         {
@@ -133,6 +138,15 @@ namespace DataBase.View
         #region - Buttons Commands -
         private void OnSelect(object sender, RoutedEventArgs args) =>
             OnSelectCommand?.Execute();
+
+        private void OnDelete(object sender, RoutedEventArgs args) =>
+            OnDeleteCommand?.Execute();
+
+        private void OnUpdate(object sender, RoutedEventArgs args) =>
+            OnUpdateCommand?.Execute();
+
+        private void OnInsert(object sender, RoutedEventArgs args) =>
+            OnInsertCommand?.Execute();
         #endregion
     }
 }

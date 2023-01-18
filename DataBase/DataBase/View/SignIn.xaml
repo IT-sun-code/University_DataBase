@@ -82,7 +82,6 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-
                     <TextBlock Style="{StaticResource Text}"
                            Grid.Row="0"
                            Margin="5 3 5 3">
