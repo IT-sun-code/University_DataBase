@@ -1,4 +1,5 @@
 ﻿using DataBase.Helper;
+using DataBase.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,13 +21,44 @@ namespace DataBase.View
     {
         public MainWindow()
         {
+            DataContext = new MainWindowViewModel();
             InitializeComponent();
         }
 
-        private void OnGetStudents(object sender, RoutedEventArgs args)
+        private void OnSelectStudents(object sender, RoutedEventArgs args)
         {
-            var data = DatabaseHelper.ExecuteCommand("SELECT * FROM brigada0_students", "Students");
-            DatabaseTable.ItemsSource = data.Tables["Students"].DefaultView;
+            if(DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.SelectAllStudent();
+            }
         }
+
+        private void OnSelectTeachers(object sender, RoutedEventArgs args)
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.SelectAllTeachers();
+            }
+        }
+
+        private void OnSelectSubjects(object sender, RoutedEventArgs args)
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.SelectAllSubjects();
+            }
+        }
+
+        private void OnSelectGroups(object sender, RoutedEventArgs args)
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.SelectAllGroups();
+            }
+        } 
     }
 }

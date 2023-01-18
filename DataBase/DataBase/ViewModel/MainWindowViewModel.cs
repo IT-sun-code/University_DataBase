@@ -2,29 +2,45 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Text;
 
 namespace DataBase.ViewModel
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        #region - Private Data -
-        private List<DatabaseRow> table = new List<DatabaseRow>();
-        #endregion
+        public MainWindowViewModel() { }
 
-        #region - Public Data - 
-        public List<DatabaseRow> Table
+        #region - Database Commands -
+        public DataView SelectAllStudent()
         {
-            get => table;
-            set
-            {
-                table = value;
-                OnPropertyChanged(nameof(Table));
-            }
+            string sql = @"SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, brigada0_groups.NAME FROM brigada0_students 
+                            INNER JOIN brigada0_groups ON brigada0_groups.GROUP_ID = brigada0_students.GROUP_ID";
+            var data = DatabaseHelper.ExecuteCommand(sql, "Students");
+            return data.Tables["Students"].DefaultView;
+        } 
+
+        public DataView SelectAllTeachers()
+        {
+            string sql = @"SELECT * FROM brigada0_teachers";
+            var data = DatabaseHelper.ExecuteCommand(sql, "Teachers");
+            return data.Tables["Teachers"].DefaultView;
+        }
+
+        public DataView SelectAllGroups()
+        {
+            string sql = @"SELECT * FROM brigada0_groups";
+            var data = DatabaseHelper.ExecuteCommand(sql, "Groups");
+            return data.Tables["Groups"].DefaultView;
+        }
+
+        public DataView SelectAllSubjects()
+        {
+            string sql = @"SELECT * FROM brigada0_subjects";
+            var data = DatabaseHelper.ExecuteCommand(sql, "Subjects");
+            return data.Tables["Subjects"].DefaultView;
         }
         #endregion
-
-        MainWindowViewModel() { }
 
         #region - On Property Changed -
         public event PropertyChangedEventHandler PropertyChanged;

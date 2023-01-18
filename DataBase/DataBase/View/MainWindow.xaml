@@ -94,11 +94,15 @@
                   Margin="10"
                   VerticalAlignment="Stretch">
                 <TabControl Style="{StaticResource Tabs}">
-                    <TabItem Header="Teachers" Style="{StaticResource TabItem}"></TabItem>
-                    <TabItem Header="Groups" Style="{StaticResource TabItem}"></TabItem>
-                    <TabItem Header="Subjects" Style="{StaticResource TabItem}"></TabItem>
+                    <TabItem Header="Teachers" Style="{StaticResource TabItem}"
+                             Selector.Selected="OnSelectTeachers"></TabItem>
+                    <TabItem Header="Groups" Style="{StaticResource TabItem}"
+                             Selector.Selected="OnSelectGroups"></TabItem>
+                    <TabItem Header="Subjects" Style="{StaticResource TabItem}"
+                             Selector.Selected="OnSelectSubjects"></TabItem>
                     <TabItem Header="Teacher Subjects" Style="{StaticResource TabItem}"></TabItem>
-                    <TabItem Header="Students" Style="{StaticResource TabItem}">
+                    <TabItem Header="Students" Style="{StaticResource TabItem}"
+                             Selector.Selected="OnSelectStudents">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -110,7 +114,7 @@
                             <!-- Select all Students -->
                             <Button 
                                 Grid.Row="2"
-                                Click="OnGetStudents"
+                                Click="OnSelectStudents"
                                 Style="{StaticResource Button}">
                                 Select All
                             </Button>
@@ -118,7 +122,7 @@
                             <!-- Delete Student -->
                             <Button 
                                 Grid.Row="3"
-                                Click="OnGetStudents"
+                                Click="OnSelectStudents"
                                 Style="{StaticResource Button}">
                                 Delete Student
                             </Button>
@@ -126,7 +130,7 @@
                             <!-- Update Student -->
                             <Button
                                 Grid.Row="4" 
-                                Click="OnGetStudents"
+                                Click="OnSelectStudents"
                                 Style="{StaticResource Button}">
                                 Update Student
                             </Button>
