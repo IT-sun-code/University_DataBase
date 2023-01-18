@@ -53,7 +53,7 @@ namespace DataBase.ViewModel
 
         public DataView SelectAllTeacherSubjects()
         {
-            string sql = @"SELECT SUBJECT_ID, brigada0_subjects.TITLE, TEACHER_ID, brigada0_teachers.FIRST_NAME, brigada0_teachers.LAST_NAME
+            string sql = @"SELECT brigada0_sub_teach.SUBJECT_ID, brigada0_subjects.TITLE, brigada0_sub_teach.TEACHER_ID, brigada0_teachers.FIRST_NAME, brigada0_teachers.LAST_NAME
                             FROM brigada0_sub_teach 
                             INNER JOIN brigada0_teachers ON brigada0_teachers.TEACHER_ID = brigada0_sub_teach.TEACHER_ID
                             INNER JOIN brigada0_subjects ON brigada0_subjects.SUBJECT_ID = brigada0_sub_teach.SUBJECT_ID";
