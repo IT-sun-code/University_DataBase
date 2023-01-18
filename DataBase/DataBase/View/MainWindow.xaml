@@ -37,6 +37,7 @@
         <Style x:Key="Button" TargetType="Button">
             <Setter Property="Background" Value="#FF0868B4"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="4"/>
         </Style>
 
         <Style x:Key="Tabs" TargetType="TabControl">
@@ -98,10 +99,38 @@
                     <TabItem Header="Subjects" Style="{StaticResource TabItem}"></TabItem>
                     <TabItem Header="Teacher Subjects" Style="{StaticResource TabItem}"></TabItem>
                     <TabItem Header="Students" Style="{StaticResource TabItem}">
-                        <Button Click="OnGetStudents"
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <!-- Select all Students -->
+                            <Button 
+                                Grid.Row="2"
+                                Click="OnGetStudents"
                                 Style="{StaticResource Button}">
-                            Select All
-                        </Button>
+                                Select All
+                            </Button>
+
+                            <!-- Delete Student -->
+                            <Button 
+                                Grid.Row="3"
+                                Click="OnGetStudents"
+                                Style="{StaticResource Button}">
+                                Delete Student
+                            </Button>
+
+                            <!-- Update Student -->
+                            <Button
+                                Grid.Row="4" 
+                                Click="OnGetStudents"
+                                Style="{StaticResource Button}">
+                                Update Student
+                            </Button>
+                        </Grid>
                     </TabItem>
                     <TabItem Header="Marks" Style="{StaticResource TabItem}"></TabItem>
                 </TabControl>
