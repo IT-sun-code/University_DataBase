@@ -79,6 +79,10 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="MyRowHeaderDataGrid" BasedOn="{StaticResource {x:Type DataGridRowHeader}}" TargetType="{x:Type DataGridRowHeader}">
+            <Setter Property="Background" Value="#FF1C2230"/>
+        </Style>
+        
         <Style x:Key="MyHeaderDataGrid" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Background" Value="#FF1C2230" />
             <Setter Property="Height" Value="15"/>
@@ -263,7 +267,8 @@
                           Foreground="White"
                           CellStyle="{StaticResource MyDataGridCell}"
                           ColumnHeaderStyle="{StaticResource MyHeaderDataGrid}"
-                          RowStyle="{StaticResource MyRowDataGrid}">
+                          RowStyle="{StaticResource MyRowDataGrid}"
+                          RowHeaderStyle="{StaticResource MyRowHeaderDataGrid}">
                 </DataGrid>
             </Grid>
         </Grid>
