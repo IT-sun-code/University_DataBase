@@ -534,7 +534,6 @@
                           Height="Auto"
                           Background="#FF232B3D"
                           Foreground="White"
-                          IsEnabled="False"
                           CellStyle="{StaticResource MyDataGridCell}"
                           ColumnHeaderStyle="{StaticResource MyHeaderDataGrid}"
                           RowStyle="{StaticResource MyRowDataGrid}"
