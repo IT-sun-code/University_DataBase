@@ -172,12 +172,22 @@ namespace DataBase.View
             }
         }
 
+        private void InsertGroup()
+        {
+            if(DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.InsertGroup();
+            }
+        }
+
         private void OnSelectGroups(object sender, RoutedEventArgs args)
         {
             SelectGroups();
             OnSelectCommand = new DelegateCommand(SelectGroups, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteGroup, () => true);
             OnUpdateCommand = new DelegateCommand(UpdateGroup, () => true);
+            OnInsertCommand = new DelegateCommand(InsertGroup, () => true);
         }
         #endregion
 

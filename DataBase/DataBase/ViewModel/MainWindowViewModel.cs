@@ -531,6 +531,65 @@ namespace DataBase.ViewModel
 
         #region - Insert - Database Commands -
 
+        public DataView InsertGroup()
+        {
+            if (GroupName == "")
+                throw new Exception("Empty GroupName value");
+            Convert.ToInt64(GroupID);
+
+            int maxID = GetMaxID("brigada0_groups");
+            string sql = @"INSERT INTO brigada0_groups VALUES(" + (maxID + 1).ToString() + "," + GroupName + ")";
+            DatabaseHelper.ExecuteCommand(sql);
+
+            return SelectAllGroups();
+        }
+
+        public DataView InsertStudent()
+        {
+
+            return SelectAllStudent();
+        }
+
+        public DataView InsertMark()
+        {
+
+            return SelectAllMarks();
+        }
+
+        public DataView InsertSubject()
+        {
+
+            return SelectAllSubjects();
+        }
+
+        public DataView InsertTeacherSubject()
+        {
+
+            return SelectAllTeacherSubjects();
+        }
+
+        public DataView InsertTeacher()
+        {
+
+            return SelectAllTeachers();
+        }
+
+        public int GetMaxID(string tableName)
+        {
+            string sql = @"SELECT * FROM " + tableName + " ORDER BY id DESC LIMIT 0, 1";
+            var data = DatabaseHelper.ExecuteCommand(sql, "Table");
+            var view = data.Tables["Table"].DefaultView;
+            string maxID = "";
+
+            foreach (var item in view)
+            {
+                var stId = item as DataRowView;
+                maxID = stId.Row[0].ToString();
+            }
+
+            return Convert.ToInt32(maxID);
+        }
+
         #endregion
 
         #region - On Property Changed -
