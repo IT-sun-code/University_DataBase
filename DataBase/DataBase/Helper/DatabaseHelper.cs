@@ -55,7 +55,7 @@ namespace DataBase.Helper
             DataSet dataSet = new DataSet();
 
             adapter.Fill(dataSet, tableName);
-            adapter.Update(dataSet, tableName);
+            adapter.Update(dataSet);
 
             return dataSet;
         }
