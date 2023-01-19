@@ -282,9 +282,11 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <!-- Id Row -->
+                                <!-- Teacher Id Row -->
                                 <TextBlock Style="{StaticResource Text}"
                                            Grid.Row="0"
                                            Grid.Column="0"
@@ -299,7 +301,7 @@
                                          Margin="5 3 5 3"
                                          Width="Auto"/>
 
-                                <!-- Title Row -->
+                                <!-- Subject Id Row -->
                                 <TextBlock Style="{StaticResource Text}"
                                            Grid.Row="1"
                                            Grid.Column="0"
@@ -310,6 +312,36 @@
                                          Style="{StaticResource TextField}"
                                          Text="{Binding TeachSubjectID}"
                                          Grid.Row="1"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+
+                                <!-- New Teacher Id Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="2"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    New Teacher ID:
+                                </TextBlock>
+                                <TextBox x:Name="SubIdField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding NewSubTeacherID}"
+                                         Grid.Row="2"
+                                         Grid.Column="1"
+                                         Margin="5 3 5 3"
+                                         Width="Auto"/>
+
+                                <!-- Subject Id Row -->
+                                <TextBlock Style="{StaticResource Text}"
+                                           Grid.Row="3"
+                                           Grid.Column="0"
+                                           Margin="5 3 5 3">
+                                    New Subject ID:
+                                </TextBlock>
+                                <TextBox x:Name="SubIdField"
+                                         Style="{StaticResource TextField}"
+                                         Text="{Binding NewTeachSubjectID}"
+                                         Grid.Row="3"
                                          Grid.Column="1"
                                          Margin="5 3 5 3"
                                          Width="Auto"/>

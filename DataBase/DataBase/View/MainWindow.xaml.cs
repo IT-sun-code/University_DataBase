@@ -52,11 +52,21 @@ namespace DataBase.View
             }
         }
 
+        private void UpdateStudent()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.UpdateStudent();
+            }
+        }
+
         private void OnSelectStudents(object sender, RoutedEventArgs args)
         {
             SelectStudents();
             OnSelectCommand = new DelegateCommand(SelectStudents, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteStudent, () => true);
+            OnUpdateCommand = new DelegateCommand(UpdateStudent, () => true);
         }
         #endregion
 
@@ -79,11 +89,21 @@ namespace DataBase.View
             }
         }
 
+        private void UpdateTeacher()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.UpdateTeacher();
+            }
+        }
+
         private void OnSelectTeachers(object sender, RoutedEventArgs args)
         {
             SelectTeachers();
             OnSelectCommand = new DelegateCommand(SelectTeachers, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteTeacher, () => true);
+            OnUpdateCommand = new DelegateCommand(UpdateTeacher, () => true);
         }
         #endregion
 
@@ -106,11 +126,21 @@ namespace DataBase.View
             }
         }
 
+        private void UpdateSubject()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.UpdateSubject();
+            }
+        }
+
         private void OnSelectSubjects(object sender, RoutedEventArgs args)
         {
             SelectSubjects();
             OnSelectCommand = new DelegateCommand(SelectSubjects, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteSubject, () => true);
+            OnUpdateCommand = new DelegateCommand(UpdateSubject, () => true);
         }
         #endregion
 
@@ -133,11 +163,21 @@ namespace DataBase.View
             }
         }
 
+        private void UpdateGroup()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.UpdateGroup();
+            }
+        }
+
         private void OnSelectGroups(object sender, RoutedEventArgs args)
         {
             SelectGroups();
             OnSelectCommand = new DelegateCommand(SelectGroups, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteGroup, () => true);
+            OnUpdateCommand = new DelegateCommand(UpdateGroup, () => true);
         }
         #endregion
 
@@ -160,11 +200,21 @@ namespace DataBase.View
             }
         }
 
+        private void UpdateMark()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.UpdateMark();
+            }
+        }
+
         private void OnSelectMarks(object sender, RoutedEventArgs args)
         {
             SelectMarks();
             OnSelectCommand = new DelegateCommand(SelectMarks, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteMark, () => true);
+            OnUpdateCommand = new Delegate(UpdateMark, () => true);
         }
         #endregion
 
@@ -183,7 +233,16 @@ namespace DataBase.View
             if (DataContext != null)
             {
                 var mainWndViewModel = DataContext as MainWindowViewModel;
-                DatabaseTable.ItemsSource = mainWndViewModel.DeleteSubTeach();
+                DatabaseTable.ItemsSource = mainWndViewModel.DeleteTeacherSubject();
+            }
+        }
+
+        private void UpdateTeacherSubjects()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.UpdateTeacherSubject();
             }
         }
 
@@ -192,6 +251,7 @@ namespace DataBase.View
             SelectTeacherSubjects();
             OnSelectCommand = new DelegateCommand(SelectTeacherSubjects, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteTeacherSubjects, () => true);
+            OnUpdateCommand = new DelegateCommand(UpdateTeacherSubjects, () => true);
         }
         #endregion
 

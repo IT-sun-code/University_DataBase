@@ -3,12 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DataBase.ViewModel
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        #region - Helpers -
+        private Regex dateRegex = new Regex(@"\d{2}-\d{2}-\d{4}");
+        #endregion
+
         #region - Public Bindings -
 
         #region - Teacher -
@@ -114,6 +120,28 @@ namespace DataBase.ViewModel
             {
                 teachSubjectID = value;
                 OnPropertyChanged(nameof(TeachSubjectID));
+            }
+        }
+
+        private string newSubTeacherID = "";
+        public string NewSubTeacherID
+        {
+            get => newSubTeacherID;
+            set
+            {
+                newSubTeacherID = value;
+                OnPropertyChanged(nameof(NewSubTeacherID));
+            }
+        }
+
+        private string newTeachSubjectID = "";
+        public string NewTeachSubjectID
+        {
+            get => newTeachSubjectID;
+            set
+            {
+                newTeachSubjectID = value;
+                OnPropertyChanged(nameof(NewTeachSubjectID));
             }
         }
         #endregion
@@ -290,7 +318,7 @@ namespace DataBase.ViewModel
             return SelectAllTeachers();
         }
 
-        public DataView DeleteSubTeach()
+        public DataView DeleteTeacherSubject()
         {
             if (SubTeacherID == "" || TeachSubjectID == "")
                 throw new Exception("Empty SubjectID/TeacherID value");
@@ -405,6 +433,98 @@ namespace DataBase.ViewModel
         #endregion
 
         #region - Update - Database Commands -
+        public DataView UpdateGroup()
+        {
+            if (GroupID == "" || GroupName == "")
+                throw new Exception("Empty GroupID/GroupName value");
+            Convert.ToInt64(GroupID);
+
+            string sql = @"UPDATE brigada0_groups SET NAME = " + GroupName + " WHERE GROUP_ID = " + GroupID;
+            DatabaseHelper.ExecuteCommand(sql);
+
+            return SelectAllGroups();
+        }
+
+        public DataView UpdateStudent()
+        {
+            if (StudentID == "" || StudentFirstName == "" || StudentLastName == "" || StudentGroupID == "")
+                throw new Exception("Empty StudentID/FirstName/LastName/GroupID value");
+            Convert.ToInt64(StudentID);
+            Convert.ToInt64(StudentGroupID);
+
+            string sql = @"UPDATE brigada0_students SET FIRST_NAME = " + StudentFirstName + 
+                ", LAST_NAME = " + StudentLastName + ", GROUP_ID = " + StudentGroupID + 
+                " WHERE STUDENT_ID = " + StudentID;
+            DatabaseHelper.ExecuteCommand(sql);
+
+            return SelectAllStudent();
+        }
+
+        public DataView UpdateMark()
+        {
+            if (MarkID == "" || MarkStudentID == "" || MarkSubjectID == "" || MarkDate == "" || MarkValue == "")
+                throw new Exception("Empty MarkID/StudentID/SubjectID/Date/Mark value");
+            Convert.ToInt64(MarkID);
+            Convert.ToInt64(MarkStudentID);
+            Convert.ToInt64(MarkSubjectID);
+            int mark = Convert.ToInt32(MarkValue);
+
+            var match = dateRegex.Match(MarkDate);
+            if (!match.Success)
+                throw new Exception("Incorrect Date format (dd-mm-yyyy)");
+            else
+                DateTime.ParseExact(match.Value, "dd-mm-yyyy", CultureInfo.InvariantCulture);
+
+            if (!(mark <= 5 && mark >= 1))
+                throw new Exception("Incorrect Mark value (from 1 t 5)");
+
+            string sql = @"UPDATE brigada0_marks SET STUDENT_ID = " + MarkStudentID +
+                ", SUBJECT_ID = " + MarkSubjectID + ", MARK_DATE = TO_DATE('" + MarkDate + "', 'DD-MM-YYYY')" +
+                ", MARK = " + MarkValue + " WHERE MARK_ID = "  + MarkID;
+            DatabaseHelper.ExecuteCommand(sql);
+
+            return SelectAllMarks();
+        }
+
+        public DataView UpdateSubject()
+        {
+            if (SubjectID == "" || SubjectTitle == "")
+                throw new Exception("Empty SubjectID/Title value");
+            Convert.ToInt64(SubjectID);
+
+            string sql = @"UPDATE brigada0_subjects SET TITLE = " + SubjectTitle + " WHERE SUBJECT_ID = " + SubjectID;
+            DatabaseHelper.ExecuteCommand(sql);
+
+            return SelectAllSubjects(); 
+        }
+
+        public DataView UpdateTeacherSubject()
+        {
+            if (SubTeacherID == "" || TeachSubjectID == "" || NewSubTeacherID == "" || NewTeachSubjectID == "")
+                throw new Exception("Empty SubjectID/TeacherID value");
+            Convert.ToInt64(SubTeacherID);
+            Convert.ToInt64(TeachSubjectID);
+            Convert.ToInt64(NewSubTeacherID);
+            Convert.ToInt64(NewTeachSubjectID);
+
+            string sql = @"UPDATE brigada0_sub_teach SET SUBJECT_ID = " + NewTeachSubjectID + ", TEACHER_ID = " + NewSubTeacherID + 
+                " WHERE TEACHER_ID = " + SubTeacherID + " AND SUBJECT_ID = " + TeachSubjectID;
+            DatabaseHelper.ExecuteCommand(sql);
+
+            return SelectAllTeacherSubjects();
+        }
+
+        public DataView UpdateTeacher()
+        {
+            if (TeacherID == "" || TeacherFirstName == "" || TeacherLastName == "")
+                throw new Exception("Empty TeacherID/FirstName/LastName value");
+            Convert.ToInt64(TeacherID);
+
+            string sql = @"UPDATE brigada0_teachers SET FIRST_NAME = " + TeacherFirstName + ", LAST_NAME = " + TeacherLastName + " WHERE TEACHER_ID = " + TeacherID;
+            DatabaseHelper.ExecuteCommand(sql);
+
+            return SelectAllTeachers();
+        }
 
         #endregion
 
