@@ -546,30 +546,78 @@ namespace DataBase.ViewModel
 
         public DataView InsertStudent()
         {
+            if (StudentFirstName == "" || StudentLastName == "" || StudentGroupID == "")
+                throw new Exception("Empty StudentID/FirstName/LastName/GroupID value");
+            Convert.ToInt64(StudentGroupID);
+
+            int maxID = GetMaxID("brigada0_students", "STUDENT_ID");
+            string sql = @"INSERT INTO brigada0_students VALUES(" + (maxID + 1).ToString() + 
+                ",'" + StudentFirstName+ "','" + StudentLastName +"'," + StudentGroupID + ")";
+            DatabaseHelper.ExecuteCommand(sql);
 
             return SelectAllStudent();
         }
 
         public DataView InsertMark()
         {
+            if (MarkStudentID == "" || MarkSubjectID == "" || MarkDate == "" || MarkValue == "")
+                throw new Exception("Empty MarkID/StudentID/SubjectID/Date/Mark value");
+            Convert.ToInt64(MarkStudentID);
+            Convert.ToInt64(MarkSubjectID);
+            int mark = Convert.ToInt32(MarkValue);
+
+            var match = dateRegex.Match(MarkDate);
+            if (!match.Success)
+                throw new Exception("Incorrect Date format (dd-mm-yyyy)");
+            else
+                DateTime.ParseExact(match.Value, "dd-mm-yyyy", CultureInfo.InvariantCulture);
+
+            if (!(mark <= 5 && mark >= 1))
+                throw new Exception("Incorrect Mark value (from 1 t 5)");
+
+
+            int maxID = GetMaxID("brigada0_marks", "MARK_ID");
+            string sql = @"INSERT INTO brigada0_marks VALUES(" + (++maxID).ToString() + "," + MarkStudentID +
+                "," + MarkSubjectID + ", TO_DATE('" + MarkDate + "', 'DD-MM-YYYY'), " + MarkValue + ")";
+            DatabaseHelper.ExecuteCommand(sql);
 
             return SelectAllMarks();
         }
 
         public DataView InsertSubject()
         {
+            if (SubjectTitle == "")
+                throw new Exception("Empty SubjectTitle value");
+
+            int maxID = GetMaxID("brigada0_subjects", "SUBJECT_ID");
+            string sql = @"INSERT INTO brigada0_subjects VALUES(" + (maxID + 1).ToString() + ",'" + SubjectTitle + "')";
+            DatabaseHelper.ExecuteCommand(sql);
 
             return SelectAllSubjects();
         }
 
         public DataView InsertTeacherSubject()
         {
+            if (SubTeacherID == "" || TeachSubjectID == "")
+                throw new Exception("Empty SubjectID/TeacherID value");
+            Convert.ToInt64(SubTeacherID);
+            Convert.ToInt64(TeachSubjectID);
+
+            string sql = @"INSERT INTO brigada0_sub_teach VALUES(" + TeachSubjectID + "," + SubTeacherID + ")";
+            DatabaseHelper.ExecuteCommand(sql);
 
             return SelectAllTeacherSubjects();
         }
 
         public DataView InsertTeacher()
         {
+            if (TeacherFirstName == "" || TeacherLastName == "")
+                throw new Exception("Empty FirstName/LastName value");
+
+            int maxID = GetMaxID("brigada0_teachers", "TEACHER_ID");
+            string sql = @"INSERT INTO brigada0_subjects VALUES(" + (maxID + 1).ToString() +
+                ",'" + TeacherFirstName + "','" + TeacherLastName + "')";
+            DatabaseHelper.ExecuteCommand(sql);
 
             return SelectAllTeachers();
         }

@@ -61,12 +61,22 @@ namespace DataBase.View
             }
         }
 
+        private void InsertStudent()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.InsertStudent();
+            }
+        }
+
         private void OnSelectStudents(object sender, RoutedEventArgs args)
         {
             SelectStudents();
             OnSelectCommand = new DelegateCommand(SelectStudents, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteStudent, () => true);
             OnUpdateCommand = new DelegateCommand(UpdateStudent, () => true);
+            OnInsertCommand = new DelegateCommand(InsertStudent, () => true);
         }
         #endregion
 
@@ -98,12 +108,22 @@ namespace DataBase.View
             }
         }
 
+        private void InsertTeacher()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.InsertTeacher();
+            }
+        }
+
         private void OnSelectTeachers(object sender, RoutedEventArgs args)
         {
             SelectTeachers();
             OnSelectCommand = new DelegateCommand(SelectTeachers, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteTeacher, () => true);
             OnUpdateCommand = new DelegateCommand(UpdateTeacher, () => true);
+            OnInsertCommand = new DelegateCommand(InsertTeacher, () => true);
         }
         #endregion
 
@@ -135,12 +155,22 @@ namespace DataBase.View
             }
         }
 
+        private void InsertSubject()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.InsertSubject();
+            }
+        }
+
         private void OnSelectSubjects(object sender, RoutedEventArgs args)
         {
             SelectSubjects();
             OnSelectCommand = new DelegateCommand(SelectSubjects, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteSubject, () => true);
             OnUpdateCommand = new DelegateCommand(UpdateSubject, () => true);
+            OnInsertCommand = new DelegateCommand(InsertSubject, () => true);
         }
         #endregion
 
@@ -219,12 +249,22 @@ namespace DataBase.View
             }
         }
 
+        private void InsertMark()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.InsertMark();
+            }
+        }
+
         private void OnSelectMarks(object sender, RoutedEventArgs args)
         {
             SelectMarks();
             OnSelectCommand = new DelegateCommand(SelectMarks, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteMark, () => true);
             OnUpdateCommand = new DelegateCommand(UpdateMark, () => true);
+            OnInsertCommand = new DelegateCommand(InsertMark, () => true);
         }
         #endregion
 
@@ -256,12 +296,22 @@ namespace DataBase.View
             }
         }
 
+        private void InsertTeacherSubjects()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.InsertTeacherSubject();
+            }
+        }
+
         private void OnSelectTeacherSubjects(object sender, RoutedEventArgs args)
         {
             SelectTeacherSubjects();
             OnSelectCommand = new DelegateCommand(SelectTeacherSubjects, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteTeacherSubjects, () => true);
             OnUpdateCommand = new DelegateCommand(UpdateTeacherSubjects, () => true);
+            OnInsertCommand = new DelegateCommand(InsertTeacherSubjects, () => true);
         }
         #endregion
 
