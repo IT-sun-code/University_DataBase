@@ -635,6 +635,9 @@ namespace DataBase.ViewModel
                 maxID = stId.Row[0].ToString();
             }
 
+            if (maxID == "")
+                maxID = "1";
+
             return Convert.ToInt32(maxID);
         }
 
