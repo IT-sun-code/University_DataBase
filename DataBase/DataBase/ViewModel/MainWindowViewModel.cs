@@ -536,7 +536,6 @@ namespace DataBase.ViewModel
         {
             if (GroupName == "")
                 throw new Exception("Empty GroupName value");
-            Convert.ToInt64(GroupID);
 
             int maxID = GetMaxID("brigada0_groups");
             string sql = @"INSERT INTO brigada0_groups VALUES(" + (maxID + 1).ToString() + "," + GroupName + ")";
@@ -588,7 +587,6 @@ namespace DataBase.ViewModel
                 maxID = stId.Row[0].ToString();
             }
 
-            Log.Information("ID = " + maxID);
             return Convert.ToInt32(maxID);
         }
 
