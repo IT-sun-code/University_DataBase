@@ -214,7 +214,7 @@ namespace DataBase.View
             SelectMarks();
             OnSelectCommand = new DelegateCommand(SelectMarks, () => true);
             OnDeleteCommand = new DelegateCommand(DeleteMark, () => true);
-            OnUpdateCommand = new Delegate(UpdateMark, () => true);
+            OnUpdateCommand = new DelegateCommand(UpdateMark, () => true);
         }
         #endregion
 
