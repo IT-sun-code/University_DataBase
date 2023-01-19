@@ -1,4 +1,5 @@
 ﻿using DataBase.Helper;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -587,6 +588,7 @@ namespace DataBase.ViewModel
                 maxID = stId.Row[0].ToString();
             }
 
+            Log.Information("ID = " + maxID);
             return Convert.ToInt32(maxID);
         }
 
