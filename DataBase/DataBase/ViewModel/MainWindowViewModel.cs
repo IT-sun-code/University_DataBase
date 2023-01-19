@@ -285,7 +285,7 @@ namespace DataBase.ViewModel
             Convert.ToInt64(GroupID);
 
             // 1. Get Students With Current GroupID
-            string sql = @"SELECT STUDENT_ID FROM brigada0_students WHERE GROUP_ID = " + GroupID + ";";
+            string sql = @"SELECT STUDENT_ID FROM brigada0_students WHERE GROUP_ID = " + GroupID;
             var data = DatabaseHelper.ExecuteCommand(sql, "Students");
             var tempView = data.Tables["Students"].DefaultView;
 
@@ -323,21 +323,21 @@ namespace DataBase.ViewModel
 
         public DataView DeleteMarkByCondition(string condition)
         {
-            string sql = @"DELETE FROM brigada0_marks WHERE " + condition + ";";
+            string sql = @"DELETE FROM brigada0_marks WHERE " + condition;
             var data = DatabaseHelper.ExecuteCommand(sql, "Marks");
             return data.Tables["Marks"].DefaultView;
         }
 
         public DataView DeleteStudentByCondition(string condition)
         {
-            string sql = @"DELETE FROM brigada0_students WHERE " + condition + ";";
+            string sql = @"DELETE FROM brigada0_students WHERE " + condition;
             var data = DatabaseHelper.ExecuteCommand(sql, "Students");
             return data.Tables["Students"].DefaultView;
         }
 
         public DataView DeleteGroupByCondition(string condition)
         {
-            string sql = @"DELETE FROM brigada0_groups WHERE " + condition + ";";
+            string sql = @"DELETE FROM brigada0_groups WHERE " + condition;
             var data = DatabaseHelper.ExecuteCommand(sql, "Groups");
             return data.Tables["Groups"].DefaultView;
         }
