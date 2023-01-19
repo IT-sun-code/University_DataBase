@@ -439,7 +439,7 @@ namespace DataBase.ViewModel
                 throw new Exception("Empty GroupID/GroupName value");
             Convert.ToInt64(GroupID);
 
-            string sql = @"UPDATE brigada0_groups SET NAME = " + GroupName + " WHERE GROUP_ID = " + GroupID;
+            string sql = @"UPDATE brigada0_groups SET NAME = '" + GroupName + "' WHERE GROUP_ID = " + GroupID;
             DatabaseHelper.ExecuteCommand(sql);
 
             return SelectAllGroups();
@@ -452,8 +452,8 @@ namespace DataBase.ViewModel
             Convert.ToInt64(StudentID);
             Convert.ToInt64(StudentGroupID);
 
-            string sql = @"UPDATE brigada0_students SET FIRST_NAME = " + StudentFirstName + 
-                ", LAST_NAME = " + StudentLastName + ", GROUP_ID = " + StudentGroupID + 
+            string sql = @"UPDATE brigada0_students SET FIRST_NAME = '" + StudentFirstName + 
+                "', LAST_NAME = '" + StudentLastName + "', GROUP_ID = " + StudentGroupID + 
                 " WHERE STUDENT_ID = " + StudentID;
             DatabaseHelper.ExecuteCommand(sql);
 
@@ -492,7 +492,7 @@ namespace DataBase.ViewModel
                 throw new Exception("Empty SubjectID/Title value");
             Convert.ToInt64(SubjectID);
 
-            string sql = @"UPDATE brigada0_subjects SET TITLE = " + SubjectTitle + " WHERE SUBJECT_ID = " + SubjectID;
+            string sql = @"UPDATE brigada0_subjects SET TITLE = '" + SubjectTitle + "' WHERE SUBJECT_ID = " + SubjectID;
             DatabaseHelper.ExecuteCommand(sql);
 
             return SelectAllSubjects(); 
@@ -520,7 +520,7 @@ namespace DataBase.ViewModel
                 throw new Exception("Empty TeacherID/FirstName/LastName value");
             Convert.ToInt64(TeacherID);
 
-            string sql = @"UPDATE brigada0_teachers SET FIRST_NAME = " + TeacherFirstName + ", LAST_NAME = " + TeacherLastName + " WHERE TEACHER_ID = " + TeacherID;
+            string sql = @"UPDATE brigada0_teachers SET FIRST_NAME = '" + TeacherFirstName + "', LAST_NAME = '" + TeacherLastName + "' WHERE TEACHER_ID = " + TeacherID;
             DatabaseHelper.ExecuteCommand(sql);
 
             return SelectAllTeachers();
