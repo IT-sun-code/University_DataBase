@@ -538,7 +538,7 @@ namespace DataBase.ViewModel
                 throw new Exception("Empty GroupName value");
 
             int maxID = GetMaxID("brigada0_groups");
-            string sql = @"INSERT INTO brigada0_groups VALUES(" + (maxID + 1).ToString() + "," + GroupName + ")";
+            string sql = @"INSERT INTO brigada0_groups VALUES(" + (maxID + 1).ToString() + ",'" + GroupName + "')";
             DatabaseHelper.ExecuteCommand(sql);
 
             return SelectAllGroups();
