@@ -292,8 +292,9 @@ namespace DataBase.ViewModel
             // 2. Delete students with current group
             foreach(var item in tempView)
             {
-                int stId = Convert.ToInt32(item);
-                DeleteMarkByCondition("brigada0_marks.STUDENT_ID = " + stId.ToString());
+                var stId = item as DataRowView;
+                string id = stId.Row[0].ToString();
+                DeleteMarkByCondition("brigada0_marks.STUDENT_ID = " + id);
             }
 
             // 3. Delete students
