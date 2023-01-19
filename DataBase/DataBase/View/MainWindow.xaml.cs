@@ -43,10 +43,20 @@ namespace DataBase.View
             }
         }
 
+        private void DeleteStudent()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.DeleteStudent();
+            }
+        }
+
         private void OnSelectStudents(object sender, RoutedEventArgs args)
         {
             SelectStudents();
             OnSelectCommand = new DelegateCommand(SelectStudents, () => true);
+            OnDeleteCommand = new DelegateCommand(DeleteStudent, () => true);
         }
         #endregion
 
@@ -94,10 +104,20 @@ namespace DataBase.View
             }
         }
 
+        private void DeleteGroup()
+        {
+            if(DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.DeleteGroup();
+            }
+        }
+
         private void OnSelectGroups(object sender, RoutedEventArgs args)
         {
             SelectGroups();
             OnSelectCommand = new DelegateCommand(SelectGroups, () => true);
+            OnDeleteCommand = new DelegateCommand(DeleteGroup, () => true);
         }
         #endregion
 
@@ -111,10 +131,20 @@ namespace DataBase.View
             }
         }
 
+        private void DeleteMark()
+        {
+            if(DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.DeleteMark();
+            }
+        }
+
         private void OnSelectMarks(object sender, RoutedEventArgs args)
         {
             SelectMarks();
             OnSelectCommand = new DelegateCommand(SelectMarks, () => true);
+            OnDeleteCommand = new DelegateCommand(DeleteMark, () => true);
         }
         #endregion
 
