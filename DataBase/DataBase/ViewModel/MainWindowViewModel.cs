@@ -520,7 +520,8 @@ namespace DataBase.ViewModel
                 throw new Exception("Empty TeacherID/FirstName/LastName value");
             Convert.ToInt64(TeacherID);
 
-            string sql = @"UPDATE brigada0_teachers SET FIRST_NAME = '" + TeacherFirstName + "', LAST_NAME = '" + TeacherLastName + "' WHERE TEACHER_ID = " + TeacherID;
+            string sql = @"UPDATE brigada0_teachers SET brigada0_teachers.FIRST_NAME = '" + TeacherFirstName +
+                "', brigada0_teachers.LAST_NAME = '" + TeacherLastName + "' WHERE brigada0_teachers.TEACHER_ID = " + TeacherID;
             DatabaseHelper.ExecuteCommand(sql);
 
             return SelectAllTeachers();

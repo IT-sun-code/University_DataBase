@@ -7,17 +7,12 @@ namespace DataBase.Model
 {
     public class UserModel : BindableBase
     {
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string DataSource { get; set; }
-        public bool ConnectionState { get; set; }
+        public string Login { get; set; } = "ST_USER";
+        public string Password { get; set; } = "oracle69";
+        public string DataSource { get; set; } = "localhost:1521/XEPDB1";
+        public bool ConnectionState { get; set; } = false;
 
-        public UserModel()
-        {
-            Login = "";
-            Password = "";
-            ConnectionState = false;
-        }
+        public UserModel() {}
 
         public void Clear()
         {
