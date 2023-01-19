@@ -615,7 +615,7 @@ namespace DataBase.ViewModel
                 throw new Exception("Empty FirstName/LastName value");
 
             int maxID = GetMaxID("brigada0_teachers", "TEACHER_ID");
-            string sql = @"INSERT INTO brigada0_subjects VALUES(" + (maxID + 1).ToString() +
+            string sql = @"INSERT INTO brigada0_teachers VALUES(" + (maxID + 1).ToString() +
                 ",'" + TeacherFirstName + "','" + TeacherLastName + "')";
             DatabaseHelper.ExecuteCommand(sql);
 
@@ -636,7 +636,7 @@ namespace DataBase.ViewModel
             }
 
             if (maxID == "")
-                maxID = "1";
+                maxID = "0";
 
             return Convert.ToInt32(maxID);
         }
