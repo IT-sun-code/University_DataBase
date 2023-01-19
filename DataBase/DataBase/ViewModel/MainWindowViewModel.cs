@@ -278,6 +278,44 @@ namespace DataBase.ViewModel
 
         #region - Delete - Database Commands -
 
+        public DataView DeleteTeacher()
+        {
+            if (TeacherID == "")
+                throw new Exception("Empty TeacherID value");
+            Convert.ToInt64(TeacherID);
+
+            DeleteSubTeachByCondition("brigada0_sub_teach.TEACHER_ID = " + TeacherID);
+            DeleteTeacherByCondition("brigada0_teachers.TEACHER_ID = " + TeacherID);
+
+            return SelectAllTeachers();
+        }
+
+        public DataView DeleteSubTeach()
+        {
+            if (SubTeacherID == "" || TeachSubjectID == "")
+                throw new Exception("Empty SubjectID/TeacherID value");
+            Convert.ToInt64(SubTeacherID);
+            Convert.ToInt64(TeachSubjectID);
+
+            DeleteSubTeachByCondition("brigada0_sub_teach.SUBJECT_ID = " + TeachSubjectID +
+                " AND brigada0_sub_teach.TEACHER_ID = " + subTeacherID);
+
+            return SelectAllTeacherSubjects();
+        }
+
+        public DataView DeleteSubject()
+        {
+            if (SubjectID == "")
+                throw new Exception("Empty SubjectID value");
+            Convert.ToInt64(SubjectID);
+
+            DeleteMarkByCondition("brigada0_marks.SUBJECT_ID = " + SubjectID);
+            DeleteSubTeachByCondition("brigada0_sub_teach.SUBJECT_ID = " + SubjectID);
+            DeleteSubjectByCondition("brigada0_subjects.SUBJECT_ID = " + SubjectID);
+
+            return SelectAllSubjects();
+        }
+
         public DataView DeleteGroup()
         {
             if(GroupID == "")
@@ -343,6 +381,24 @@ namespace DataBase.ViewModel
         public void DeleteGroupByCondition(string condition)
         {
             string sql = @"DELETE FROM brigada0_groups WHERE " + condition;
+            DatabaseHelper.ExecuteCommand(sql);
+        }
+
+        public void DeleteSubTeachByCondition(string condition)
+        {
+            string sql = @"DELETE FROM brigada0_sub_teach WHERE " + condition;
+            DatabaseHelper.ExecuteCommand(sql);
+        }
+
+        public void DeleteSubjectByCondition(string condition)
+        {
+            string sql = @"DELETE FROM brigada0_subjects WHERE " + condition;
+            DatabaseHelper.ExecuteCommand(sql);
+        }
+
+        public void DeleteTeacherByCondition(string condition)
+        {
+            string sql = @"DELETE FROM brigada0_teachers WHERE " + condition;
             DatabaseHelper.ExecuteCommand(sql);
         }
 
