@@ -323,7 +323,7 @@
                                            Margin="5 3 5 3">
                                     New Teacher ID:
                                 </TextBlock>
-                                <TextBox x:Name="SubIdField"
+                                <TextBox x:Name="NewTeachIdField"
                                          Style="{StaticResource TextField}"
                                          Text="{Binding NewSubTeacherID}"
                                          Grid.Row="2"
@@ -338,7 +338,7 @@
                                            Margin="5 3 5 3">
                                     New Subject ID:
                                 </TextBlock>
-                                <TextBox x:Name="SubIdField"
+                                <TextBox x:Name="NewSubIdField"
                                          Style="{StaticResource TextField}"
                                          Text="{Binding NewTeachSubjectID}"
                                          Grid.Row="3"
