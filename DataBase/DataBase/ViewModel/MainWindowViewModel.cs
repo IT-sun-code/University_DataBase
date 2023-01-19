@@ -537,7 +537,7 @@ namespace DataBase.ViewModel
             if (GroupName == "")
                 throw new Exception("Empty GroupName value");
 
-            int maxID = GetMaxID("brigada0_groups");
+            int maxID = GetMaxID("brigada0_groups", "GROUP_ID");
             string sql = @"INSERT INTO brigada0_groups VALUES(" + (maxID + 1).ToString() + ",'" + GroupName + "')";
             DatabaseHelper.ExecuteCommand(sql);
 
@@ -574,9 +574,9 @@ namespace DataBase.ViewModel
             return SelectAllTeachers();
         }
 
-        public int GetMaxID(string tableName)
+        public int GetMaxID(string tableName, string idName)
         {
-            string sql = @"SELECT * FROM " + tableName + " ORDER BY id DESC LIMIT 0, 1";
+            string sql = @"SELECT * FROM " + tableName + " WHERE ROWNUM = 1 ORDER BY " + idName + " DESC ";
             var data = DatabaseHelper.ExecuteCommand(sql, "Table");
             var view = data.Tables["Table"].DefaultView;
             string maxID = "";
