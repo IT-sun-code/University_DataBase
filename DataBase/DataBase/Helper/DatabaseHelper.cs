@@ -55,9 +55,16 @@ namespace DataBase.Helper
             DataSet dataSet = new DataSet();
 
             adapter.Fill(dataSet, tableName);
-            adapter.Update(dataSet);
+            adapter.Update(dataSet, tableName);
 
             return dataSet;
+        }
+
+        public static void ExecuteCommand(string sql)
+        {
+            var command = Connection.CreateCommand();
+            command.CommandText = sql;
+            command.ExecuteNonQuery();
         }
 
         public static void CloseConnect()

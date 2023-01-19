@@ -299,7 +299,9 @@ namespace DataBase.ViewModel
             // 3. Delete students
             DeleteStudentByCondition("brigada0_students.GROUP_ID = " + GroupID);
             // 4. Delete Group
-            return DeleteGroupByCondition("brigada0_groups.GROUP_ID = " + GroupID);
+            DeleteGroupByCondition("brigada0_groups.GROUP_ID = " + GroupID);
+
+            return SelectAllGroups();
         }
 
         public DataView DeleteStudent()
@@ -309,7 +311,9 @@ namespace DataBase.ViewModel
             Convert.ToInt64(StudentID);
 
             DeleteMarkByCondition("brigada0_marks.STUDENT_ID = " + StudentID);
-            return DeleteStudentByCondition("brigada0_students.STUDENT_ID = " + StudentID);
+            DeleteStudentByCondition("brigada0_students.STUDENT_ID = " + StudentID);
+
+            return SelectAllStudent();
         }
 
         public DataView DeleteMark()
@@ -318,28 +322,27 @@ namespace DataBase.ViewModel
                 throw new Exception("Empty MarkID value");
             Convert.ToInt64(MarkID);
 
-            return DeleteMarkByCondition("brigada0_marks.MARK_ID = " + MarkID);
+            DeleteMarkByCondition("brigada0_marks.MARK_ID = " + MarkID);
+
+            return SelectAllMarks();
         }
 
-        public DataView DeleteMarkByCondition(string condition)
+        public void DeleteMarkByCondition(string condition)
         {
             string sql = @"DELETE FROM brigada0_marks WHERE " + condition;
-            var data = DatabaseHelper.ExecuteCommand(sql, "Marks");
-            return data.Tables["Marks"].DefaultView;
+            DatabaseHelper.ExecuteCommand(sql);
         }
 
-        public DataView DeleteStudentByCondition(string condition)
+        public void DeleteStudentByCondition(string condition)
         {
             string sql = @"DELETE FROM brigada0_students WHERE " + condition;
-            var data = DatabaseHelper.ExecuteCommand(sql, "Students");
-            return data.Tables["Students"].DefaultView;
+            DatabaseHelper.ExecuteCommand(sql);
         }
 
-        public DataView DeleteGroupByCondition(string condition)
+        public void DeleteGroupByCondition(string condition)
         {
             string sql = @"DELETE FROM brigada0_groups WHERE " + condition;
-            var data = DatabaseHelper.ExecuteCommand(sql, "Groups");
-            return data.Tables["Groups"].DefaultView;
+            DatabaseHelper.ExecuteCommand(sql);
         }
 
         #endregion
