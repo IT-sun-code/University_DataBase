@@ -282,7 +282,7 @@ namespace DataBase.ViewModel
             {
                 if (whereFlag > 0)
                     sqlWhereCondition += " AND ";
-                sqlWhereCondition += "FIRST_NAME LIKE '" + StudentFirstName + "' ";
+                sqlWhereCondition += " FIRST_NAME LIKE '" + StudentFirstName + "' ";
                 ++whereFlag;
             }
 
@@ -290,7 +290,7 @@ namespace DataBase.ViewModel
             {
                 if (whereFlag > 0)
                     sqlWhereCondition += " AND ";
-                sqlWhereCondition += "LAST_NAME LIKE '" + StudentLastName + "' ";
+                sqlWhereCondition += " LAST_NAME LIKE '" + StudentLastName + "' ";
                 ++whereFlag;
             }
 
@@ -299,7 +299,7 @@ namespace DataBase.ViewModel
                 Convert.ToInt32(StudentGroupID);
                 if (whereFlag > 0)
                     sqlWhereCondition += " AND ";
-                sqlWhereCondition += "GROUP_ID = " + studentGroupID;
+                sqlWhereCondition += " brigada0_students.GROUP_ID = " + StudentGroupID;
                 ++whereFlag;
             }
 
@@ -318,6 +318,43 @@ namespace DataBase.ViewModel
             return data.Tables["Teachers"].DefaultView;
         }
 
+        public DataView SelectTeacherByCondition()
+        {
+            string sql = @"SELECT * FROM brigada0_teachers";
+
+            string sqlWhereCondition = "";
+            int whereFlag = 0;
+
+            if(TeacherID != "")
+            {
+                Convert.ToInt32(TeacherID);
+                sqlWhereCondition += " TEACHER_ID = " + TeacherID + " ";
+                ++whereFlag;
+            }
+
+            if (TeacherFirstName != "")
+            {
+                if (whereFlag > 0)
+                    sqlWhereCondition += " AND ";
+                sqlWhereCondition += " FIRST_NAME LIKE '" + TeacherFirstName + "' "; 
+                ++whereFlag;
+            }
+
+            if(TeacherLastName != "")
+            {
+                if (whereFlag > 0)
+                    sqlWhereCondition += " AND ";
+                sqlWhereCondition += " LAST_NAME LIKE '" + TeacherLastName + "' ";
+                ++whereFlag;
+            }
+
+            if (whereFlag > 0)
+                sql += " WHERE " + sqlWhereCondition;
+
+            var data = DatabaseHelper.ExecuteCommand(sql, "Teachers");
+            return data.Tables["Teachers"].DefaultView;
+        }
+
         public DataView SelectAllGroups()
         {
             string sql = @"SELECT * FROM brigada0_groups";
@@ -325,9 +362,67 @@ namespace DataBase.ViewModel
             return data.Tables["Groups"].DefaultView;
         }
 
+        public DataView SelectGroupByCondition()
+        {
+            string sql = @"SELECT * FROM brigada0_groups";
+
+            string sqlWhereCondition = "";
+            int whereFlag = 0;
+
+            if(GroupID != "")
+            {
+                Convert.ToInt32(GroupID);
+                sqlWhereCondition += " GROUP_ID = " + GroupID + " ";
+                ++whereFlag;
+            }
+
+            if (GroupName != "")
+            {
+                if (whereFlag > 0)
+                    sqlWhereCondition += " AND ";
+                sqlWhereCondition += "NAME LIKE '" + GroupName + "' ";
+                ++whereFlag;
+            }
+
+            if (whereFlag > 0)
+                sql += " WHERE " + sqlWhereCondition;
+
+            var data = DatabaseHelper.ExecuteCommand(sql, "Groups");
+            return data.Tables["Groups"].DefaultView;
+        }
+
         public DataView SelectAllSubjects()
         {
             string sql = @"SELECT * FROM brigada0_subjects";
+            var data = DatabaseHelper.ExecuteCommand(sql, "Subjects");
+            return data.Tables["Subjects"].DefaultView;
+        }
+
+        public DataView SelectSubjectByCondition()
+        {
+            string sql = @"SELECT * FROM brigada0_subjects";
+
+            string sqlWhereCondition = "";
+            int whereFlag = 0;
+
+            if(SubjectID != "")
+            {
+                Convert.ToInt32(SubjectID);
+                sqlWhereCondition += " SUBJECT_ID = " + SubjectID + " ";
+                ++whereFlag;
+            }
+
+            if(SubjectTitle != "")
+            {
+                if (whereFlag > 0)
+                    sqlWhereCondition += " AND ";
+                sqlWhereCondition += " TITLE LIKE '" + SubjectTitle + "' ";
+                ++whereFlag;
+            }
+
+            if (whereFlag > 0)
+                sql += " WHERE " + sqlWhereCondition;
+
             var data = DatabaseHelper.ExecuteCommand(sql, "Subjects");
             return data.Tables["Subjects"].DefaultView;
         }
@@ -342,12 +437,111 @@ namespace DataBase.ViewModel
             return data.Tables["Marks"].DefaultView;
         }
 
+        public DataView SelectMarkByCondition()
+        {
+
+            string sql = @"SELECT MARK_ID, brigada0_students.FIRST_NAME, brigada0_students.LAST_NAME, brigada0_subjects.TITLE, MARK_DATE, MARK
+                            FROM brigada0_marks 
+                            INNER JOIN brigada0_students ON brigada0_students.STUDENT_ID = brigada0_marks.STUDENT_ID
+                            INNER JOIN brigada0_subjects ON brigada0_subjects.SUBJECT_ID = brigada0_marks.SUBJECT_ID";
+
+            string sqlWhereCondition = "";
+            int whereFlag = 0;
+
+            if(MarkID != "")
+            {
+                Convert.ToInt32(MarkID);
+                sqlWhereCondition += " MARK_ID = " + MarkID + " ";
+                ++whereFlag;
+            }
+
+            if(MarkStudentID != "")
+            {
+                Convert.ToInt32(MarkStudentID);
+                if (whereFlag > 0)
+                    sqlWhereCondition += " AND ";
+                sqlWhereCondition += " brigada0_marks.STUDENT_ID = " + MarkStudentID + " ";
+                ++whereFlag;
+            }
+
+            if(MarkSubjectID != "")
+            {
+                Convert.ToInt32(MarkSubjectID);
+                if (whereFlag > 0)
+                    sqlWhereCondition += " AND ";
+                sqlWhereCondition += " brigada0_marks.SUBJECT_ID = " + MarkSubjectID + " ";
+                ++whereFlag;
+            }
+
+            if(MarkDate != "")
+            {
+                var match = dateRegex.Match(MarkDate);
+                if (!match.Success)
+                    throw new Exception("Incorrect Date format (dd-mm-yyyy)");
+                else
+                    DateTime.ParseExact(match.Value, "dd-mm-yyyy", CultureInfo.InvariantCulture);
+
+                if (whereFlag > 0)
+                    sqlWhereCondition += " AND ";
+                sqlWhereCondition += " MARK_DATE = TO_DATE('" + MarkDate + "', 'DD-MM-YYYY') ";
+                ++whereFlag;
+            }
+
+            if(MarkValue != "")
+            {
+                Convert.ToInt32(MarkValue);
+                if (whereFlag > 0)
+                    sqlWhereCondition += " AND ";
+                sqlWhereCondition += " MARK = " + MarkValue + " ";
+                ++whereFlag;
+            }
+
+            if (whereFlag > 0)
+                sql += " WHERE " + sqlWhereCondition;
+
+            var data = DatabaseHelper.ExecuteCommand(sql, "Marks");
+            return data.Tables["Marks"].DefaultView;
+        }
+
         public DataView SelectAllTeacherSubjects()
         {
             string sql = @"SELECT brigada0_sub_teach.SUBJECT_ID, brigada0_subjects.TITLE, brigada0_sub_teach.TEACHER_ID, brigada0_teachers.FIRST_NAME, brigada0_teachers.LAST_NAME
                             FROM brigada0_sub_teach 
                             INNER JOIN brigada0_teachers ON brigada0_teachers.TEACHER_ID = brigada0_sub_teach.TEACHER_ID
                             INNER JOIN brigada0_subjects ON brigada0_subjects.SUBJECT_ID = brigada0_sub_teach.SUBJECT_ID";
+            var data = DatabaseHelper.ExecuteCommand(sql, "Teacher Subjects");
+            return data.Tables["Teacher Subjects"].DefaultView;
+        }
+
+        public DataView SelectTeacherSubjectsByCondition()
+        {
+            string sql = @"SELECT brigada0_sub_teach.SUBJECT_ID, brigada0_subjects.TITLE, brigada0_sub_teach.TEACHER_ID, brigada0_teachers.FIRST_NAME, brigada0_teachers.LAST_NAME
+                            FROM brigada0_sub_teach 
+                            INNER JOIN brigada0_teachers ON brigada0_teachers.TEACHER_ID = brigada0_sub_teach.TEACHER_ID
+                            INNER JOIN brigada0_subjects ON brigada0_subjects.SUBJECT_ID = brigada0_sub_teach.SUBJECT_ID";
+
+            string sqlWhereCondition = "";
+            int whereFlag = 0;
+
+            if(TeachSubjectID != "")
+            {
+                Convert.ToInt32(TeachSubjectID);
+                sqlWhereCondition += " brigada0_sub_teach.SUBJECT_ID = " + TeachSubjectID + " ";
+                ++whereFlag;
+            }
+
+            if(SubTeacherID != "")
+            {
+                Convert.ToInt32(SubTeacherID); 
+                if (whereFlag > 0)
+                    sqlWhereCondition += " AND ";
+                sqlWhereCondition += " brigada0_sub_teach.TEACHER_ID = " + SubTeacherID + " ";
+                ++whereFlag;
+            }
+
+            if (whereFlag > 0)
+                sql += " WHERE " + sqlWhereCondition;
+
             var data = DatabaseHelper.ExecuteCommand(sql, "Teacher Subjects");
             return data.Tables["Teacher Subjects"].DefaultView;
         }
