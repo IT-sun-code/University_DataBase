@@ -275,6 +275,7 @@ namespace DataBase.ViewModel
             {
                 Convert.ToInt32(StudentID);
                 sqlWhereCondition += " STUDENT_ID = " + StudentID + " ";
+                ++whereFlag;
             }
 
             if(StudentFirstName != "")
@@ -282,6 +283,7 @@ namespace DataBase.ViewModel
                 if (whereFlag > 0)
                     sqlWhereCondition += ",";
                 sqlWhereCondition += "FIRST_NAME = " + StudentFirstName;
+                ++whereFlag;
             }
 
             if(StudentLastName != "")
@@ -289,6 +291,7 @@ namespace DataBase.ViewModel
                 if (whereFlag > 0)
                     sqlWhereCondition += ",";
                 sqlWhereCondition += "LAST_NAME = " + StudentLastName;
+                ++whereFlag;
             }
 
             if(StudentGroupID != "")
@@ -297,10 +300,11 @@ namespace DataBase.ViewModel
                 if (whereFlag > 0)
                     sqlWhereCondition += ",";
                 sqlWhereCondition += "GROUP_ID = " + studentGroupID;
+                ++whereFlag;
             }
 
             if (whereFlag > 0)
-                sql += "WHERE " + sqlWhereCondition;
+                sql += " WHERE " + sqlWhereCondition;
 
             var data = DatabaseHelper.ExecuteCommand(sql, "Students");
             return data.Tables["Students"].DefaultView;
