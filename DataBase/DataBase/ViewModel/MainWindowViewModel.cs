@@ -281,7 +281,7 @@ namespace DataBase.ViewModel
             if(StudentFirstName != "")
             {
                 if (whereFlag > 0)
-                    sqlWhereCondition += ",";
+                    sqlWhereCondition += " AND ";
                 sqlWhereCondition += "FIRST_NAME LIKE '" + StudentFirstName + "' ";
                 ++whereFlag;
             }
@@ -289,7 +289,7 @@ namespace DataBase.ViewModel
             if(StudentLastName != "")
             {
                 if (whereFlag > 0)
-                    sqlWhereCondition += ",";
+                    sqlWhereCondition += " AND ";
                 sqlWhereCondition += "LAST_NAME LIKE '" + StudentLastName + "' ";
                 ++whereFlag;
             }
@@ -298,7 +298,7 @@ namespace DataBase.ViewModel
             {
                 Convert.ToInt32(StudentGroupID);
                 if (whereFlag > 0)
-                    sqlWhereCondition += ",";
+                    sqlWhereCondition += " AND ";
                 sqlWhereCondition += "GROUP_ID = " + studentGroupID;
                 ++whereFlag;
             }
