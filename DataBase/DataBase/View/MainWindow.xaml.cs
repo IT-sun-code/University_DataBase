@@ -25,6 +25,9 @@ namespace DataBase.View
         private DelegateCommand OnDeleteCommand { get; set; } = null;
         private DelegateCommand OnUpdateCommand { get; set; } = null;
         private DelegateCommand OnInsertCommand { get; set; } = null;
+
+
+        private DelegateCommand OnSelectByConditionCommand { get; set; } = null;
         #endregion
 
         public MainWindow()
@@ -40,6 +43,15 @@ namespace DataBase.View
             {
                 var mainWndViewModel = DataContext as MainWindowViewModel;
                 DatabaseTable.ItemsSource = mainWndViewModel.SelectAllStudent();
+            }
+        }
+
+        private void SelectStudentByCondition()
+        {
+            if (DataContext != null)
+            {
+                var mainWndViewModel = DataContext as MainWindowViewModel;
+                DatabaseTable.ItemsSource = mainWndViewModel.SelectStudentByCondition();
             }
         }
 
@@ -77,6 +89,7 @@ namespace DataBase.View
             OnDeleteCommand = new DelegateCommand(DeleteStudent, () => true);
             OnUpdateCommand = new DelegateCommand(UpdateStudent, () => true);
             OnInsertCommand = new DelegateCommand(InsertStudent, () => true);
+            OnSelectByConditionCommand = new DelegateCommand(SelectStudentByCondition, () => true);
         }
         #endregion
 
@@ -318,6 +331,9 @@ namespace DataBase.View
         #region - Buttons Commands -
         private void OnSelect(object sender, RoutedEventArgs args) =>
             OnSelectCommand?.Execute();
+
+        private void OnSelectByCondition(object sender, RoutedEventArgs args) =>
+            OnSelectByConditionCommand?.Execute();
 
         private void OnDelete(object sender, RoutedEventArgs args) =>
             OnDeleteCommand?.Execute();

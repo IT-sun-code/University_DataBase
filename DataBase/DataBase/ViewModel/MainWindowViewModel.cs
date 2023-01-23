@@ -263,6 +263,50 @@ namespace DataBase.ViewModel
             return data.Tables["Students"].DefaultView;
         } 
 
+        public DataView SelectStudentByCondition()
+        {
+            string sql = @"SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, brigada0_groups.NAME FROM brigada0_students 
+                            INNER JOIN brigada0_groups ON brigada0_groups.GROUP_ID = brigada0_students.GROUP_ID";
+
+            string sqlWhereCondition = "";
+            int whereFlag = 0;
+
+            if (StudentID != "")
+            {
+                Convert.ToInt32(StudentID);
+                sqlWhereCondition += " STUDENT_ID = " + StudentID + " ";
+            }
+
+            if(StudentFirstName != "")
+            {
+                if (whereFlag > 0)
+                    sqlWhereCondition += ",";
+                sqlWhereCondition += "FIRST_NAME = " + StudentFirstName;
+            }
+
+            if(StudentLastName != "")
+            {
+                if (whereFlag > 0)
+                    sqlWhereCondition += ",";
+                sqlWhereCondition += "LAST_NAME = " + StudentLastName;
+            }
+
+            if(StudentGroupID != "")
+            {
+                Convert.ToInt32(StudentGroupID);
+                if (whereFlag > 0)
+                    sqlWhereCondition += ",";
+                sqlWhereCondition += "GROUP_ID = " + studentGroupID;
+            }
+
+            if (whereFlag > 0)
+                sql += "WHERE " + sqlWhereCondition;
+
+            var data = DatabaseHelper.ExecuteCommand(sql, "Students");
+            return data.Tables["Students"].DefaultView;
+
+        }
+
         public DataView SelectAllTeachers()
         {
             string sql = @"SELECT * FROM brigada0_teachers";
